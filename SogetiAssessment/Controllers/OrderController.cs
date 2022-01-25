@@ -8,11 +8,11 @@ namespace SogetiAssessment.Controllers
     [Route("[controller]")]
     public class OrderController : ControllerBase
     {
-        private readonly IDataService<Order> _orderDataService;
+        private readonly OrderDataService _orderDataService;
 
-        public OrderController(IDataService<Order> orderDataService)
+        public OrderController(DataService<Order> orderDataService)
         {
-            _orderDataService = orderDataService;
+            _orderDataService = orderDataService as OrderDataService ?? throw new ArgumentNullException("Dataservice is null.");
         }
 
         /// <summary>

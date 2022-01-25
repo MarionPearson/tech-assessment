@@ -11,7 +11,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IDataService<Order>, OrderDataService>(
+builder.Services.AddScoped<DataService<Order>, OrderDataService>(
     x => new OrderDataService(
         new OrderContextWrapper(
             new DbContextOptionsBuilder<OrderContext>().UseInMemoryDatabase(databaseName: "PrimarySet").Options

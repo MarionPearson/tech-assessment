@@ -11,19 +11,19 @@ namespace SogetiAssessment.DataServices
             _contextWrapper = contextWrapper;
         }
 
-        public async Task<ActionResult<T>> Get(int id)
+        public virtual async Task<ActionResult<T>> Get(int id)
         {
             return await _contextWrapper.PrimarySet.FindAsync(id);
         }
 
-        public async Task<T> Create(T obj)
+        public virtual async Task<T> Create(T obj)
         {
             _contextWrapper.PrimarySet.Add(obj);
             await _contextWrapper.Context.SaveChangesAsync();
             return obj;
         }
 
-        public async Task<T> Update(T obj)
+        public virtual async Task<T> Update(T obj)
         {
             _contextWrapper.Context.Entry(obj).State = EntityState.Modified;
 
@@ -46,7 +46,7 @@ namespace SogetiAssessment.DataServices
             return obj;
         }
 
-        public async Task<T> Delete(int id)
+        public virtual async Task<T> Delete(int id)
         {
             var obj = await _contextWrapper.PrimarySet.FindAsync(id);
 
